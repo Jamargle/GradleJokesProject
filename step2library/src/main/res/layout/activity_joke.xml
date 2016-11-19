@@ -2,16 +2,18 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/joke_activity_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".JokeActivity">
+    tools:context=".JokeActivity"/>
+    <!--
 
-    <fragment
-        android:id="@+id/fragment_joke_to_tell"
-        android:name="com.example.jose.step2library.TellAJokeFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout="@layout/fragment_tell_a_joke"/>
+        <fragment
+            android:id="@+id/fragment_joke_to_tell"
+            android:name="com.example.jose.step2library.TellAJokeFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_tell_a_joke"/>
 
-</FrameLayout>
+    </FrameLayout>-->

@@ -14,6 +14,15 @@ public final class TellAJokeFragment extends Fragment
     private static final String JOKE_TO_TELL = "joke_to_tell";
     private final TellAJokeFragmentPresenter presenter = new TellAJokeFragmentPresenterImp(this);
 
+    public static TellAJokeFragment newInstance(final String joke) {
+        final TellAJokeFragment fragment = new TellAJokeFragment();
+        final Bundle arguments = new Bundle();
+        arguments.putString(JOKE_TO_TELL, joke);
+        fragment.setArguments(arguments);
+
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(
@@ -21,24 +30,22 @@ public final class TellAJokeFragment extends Fragment
             final ViewGroup container,
             final Bundle savedInstanceState) {
 
-        final View rootView = inflater.inflate(R.layout.fragment_tell_a_joke, container);
+        return inflater.inflate(R.layout.fragment_tell_a_joke, container, false);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         presenter.prepareView();
-        return rootView;
     }
 
     @Override
     public void showTheJoke() {
         final TextView jokeView = (TextView) getActivity().findViewById(R.id.joke_to_tell);
-        final String joke = getArguments().getString(JOKE_TO_TELL);
-        jokeView.setText(joke);
-    }
-
-    public TellAJokeFragment setJoke(final String joke) {
-        final TellAJokeFragment fragment = new TellAJokeFragment();
-        final Bundle arguments = new Bundle();
-        arguments.putString(JOKE_TO_TELL, joke);
-        fragment.setArguments(arguments);
-        return fragment;
+        if (jokeView != null) {
+            final String joke = getArguments().getString(JOKE_TO_TELL);
+            jokeView.setText(joke);
+        }
     }
 
 }

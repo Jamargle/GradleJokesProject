@@ -16,16 +16,15 @@ public final class JokeActivity extends AppCompatActivity {
     protected void onCreate(final @Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_joke);
-        initJokeFragment();
+        showJokeFragment();
     }
 
-    private void initJokeFragment() {
+    private void showJokeFragment() {
         final String joke = getIntent().getStringExtra(JOKE_TO_TELL);
-        if (joke != null) {
-            ((TellAJokeFragment) getFragmentManager()
-                    .findFragmentById(R.id.fragment_joke_to_tell))
-                    .setJoke(joke);
-        }
+        final TellAJokeFragment fragment = TellAJokeFragment.newInstance(joke);
+        getFragmentManager().beginTransaction()
+                .add(R.id.joke_activity_container, fragment)
+                .commit();
     }
 
 }
