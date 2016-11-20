@@ -1,5 +1,7 @@
 package com.jmlb0003.jokes.gradlejokesproject;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 
 import com.example.jose.myapplication.backend.jokeApi.JokeApi;
@@ -17,9 +19,20 @@ public final class JokeAsyncTask
     private final static String API_ENDPOINT = "_ah/api/";
     private static JokeApi myApiService = null;
     private final JokeAsyncTaskListener asyncTaskListener;
+    private final ProgressDialog dialog;
 
-    public JokeAsyncTask(final JokeAsyncTaskListener listener) {
+    public JokeAsyncTask(
+            final Context context,
+            final JokeAsyncTaskListener listener) {
+
         asyncTaskListener = listener;
+        dialog = new ProgressDialog(context);
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        dialog.show();
     }
 
     @Override
@@ -54,6 +67,9 @@ public final class JokeAsyncTask
 
     @Override
     protected void onPostExecute(final String joke) {
+        if (dialog.isShowing()) {
+            dialog.hide();
+        }
         asyncTaskListener.showAJoke(joke);
     }
 
