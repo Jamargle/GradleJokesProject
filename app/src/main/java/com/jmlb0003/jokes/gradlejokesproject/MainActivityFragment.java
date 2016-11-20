@@ -44,7 +44,11 @@ public final class MainActivityFragment extends Fragment
 
     @Override
     public void thereIsNoJokes() {
-        Toast.makeText(getActivity(), R.string.no_jokes, Toast.LENGTH_SHORT).show();
+        getActivity().runOnUiThread(new Runnable() {
+            @Override public void run() {
+                Toast.makeText(getActivity(), R.string.no_jokes, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initAddView(final View root) {
