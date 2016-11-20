@@ -3,7 +3,6 @@ package com.example.jose.step2library;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -23,7 +22,7 @@ public final class TellAJokeFragmentPresenterImpShould {
     }
 
     @Test
-    public void prepareView_showJoke() throws Exception {
+    public void prepareView_showJoke() {
         presenter.prepareView();
         verify(mockView).showTheJoke();
     }

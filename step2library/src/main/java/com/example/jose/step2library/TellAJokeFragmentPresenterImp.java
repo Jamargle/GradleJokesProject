@@ -1,10 +1,10 @@
 package com.example.jose.step2library;
 
-public final class TellAJokeFragmentPresenterImp implements TellAJokeFragmentPresenter {
+final class TellAJokeFragmentPresenterImp implements TellAJokeFragmentPresenter {
 
     private final TellAJokeFragmentPresenter.View view;
 
-    public TellAJokeFragmentPresenterImp(final TellAJokeFragmentPresenter.View view) {
+    TellAJokeFragmentPresenterImp(final TellAJokeFragmentPresenter.View view) {
         this.view = view;
     }
 
