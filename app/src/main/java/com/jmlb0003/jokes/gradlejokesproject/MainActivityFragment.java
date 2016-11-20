@@ -1,11 +1,10 @@
 package com.jmlb0003.jokes.gradlejokesproject;
 
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -13,22 +12,19 @@ import com.google.android.gms.ads.AdView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * A placeholder fragment containing a simple view.
- */
-public class MainActivityFragment extends Fragment {
+public final class MainActivityFragment extends Fragment {
 
-    public MainActivityFragment() {
-    }
+    private Callback callback;
 
     @Override
     public View onCreateView(
-            LayoutInflater inflater,
-            ViewGroup container,
-            Bundle savedInstanceState) {
+            final LayoutInflater inflater,
+            final ViewGroup container,
+            final Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, root);
+        callback = (Callback) getActivity();
         AdView mAdView = (AdView) root.findViewById(R.id.adView);
         // Create an ad request. Check logcat output for the hashed device ID to
         // get test ads on a physical device. e.g.
@@ -43,7 +39,13 @@ public class MainActivityFragment extends Fragment {
     @OnClick(R.id.tell_joke_button)
     public void tellJoke() {
         final Joker joker = new Joker();
-        Toast.makeText(getActivity(), joker.getJoke(), Toast.LENGTH_SHORT).show();
+        callback.goToJokeActivity(joker.getJoke());
+    }
+
+    interface Callback {
+
+        void goToJokeActivity(String joke);
+
     }
 
 }
