@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -12,7 +13,8 @@ import com.google.android.gms.ads.AdView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public final class MainActivityFragment extends Fragment {
+public final class MainActivityFragment extends Fragment
+        implements JokeAsyncTask.JokeAsyncTaskListener {
 
     private Callback callback;
 
@@ -32,7 +34,17 @@ public final class MainActivityFragment extends Fragment {
 
     @OnClick(R.id.tell_joke_button)
     public void tellJoke() {
-        callback.goToJokeActivity(Joker.getJoke());
+        new JokeAsyncTask(this).execute();
+    }
+
+    @Override
+    public void showAJoke(final String joke) {
+        callback.goToJokeActivity(joke);
+    }
+
+    @Override
+    public void thereIsNoJokes() {
+        Toast.makeText(getActivity(), R.string.no_jokes, Toast.LENGTH_SHORT).show();
     }
 
     private void initAddView(final View root) {
