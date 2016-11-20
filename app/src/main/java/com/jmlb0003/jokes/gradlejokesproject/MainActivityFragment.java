@@ -22,23 +22,30 @@ public final class MainActivityFragment extends Fragment {
             final ViewGroup container,
             final Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_main, container, false);
+        final View root = inflater.inflate(R.layout.fragment_main, container, false);
+        initAddView(root);
         ButterKnife.bind(this, root);
         callback = (Callback) getActivity();
-        AdView mAdView = (AdView) root.findViewById(R.id.adView);
-        // Create an ad request. Check logcat output for the hashed device ID to
-        // get test ads on a physical device. e.g.
-        // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .build();
-        mAdView.loadAd(adRequest);
+        setRetainInstance(true);
         return root;
     }
 
     @OnClick(R.id.tell_joke_button)
     public void tellJoke() {
         callback.goToJokeActivity(Joker.getJoke());
+    }
+
+    private void initAddView(final View root) {
+        final AdView adView = (AdView) root.findViewById(R.id.adView);
+        if (adView != null) {
+            // Create an ad request. Check logcat output for the hashed device ID to
+            // get test ads on a physical device. e.g.
+            // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
+            final AdRequest adRequest = new AdRequest.Builder()
+                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                    .build();
+            adView.loadAd(adRequest);
+        }
     }
 
     interface Callback {
