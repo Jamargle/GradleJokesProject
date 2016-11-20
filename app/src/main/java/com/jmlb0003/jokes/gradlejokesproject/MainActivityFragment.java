@@ -38,8 +38,7 @@ public final class MainActivityFragment extends Fragment {
 
     @OnClick(R.id.tell_joke_button)
     public void tellJoke() {
-        final Joker joker = new Joker();
-        callback.goToJokeActivity(joker.getJoke());
+        callback.goToJokeActivity(Joker.getJoke());
     }
 
     interface Callback {
