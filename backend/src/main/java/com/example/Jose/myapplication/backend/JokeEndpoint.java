@@ -26,12 +26,13 @@ import com.jmlb0003.jokes.gradlejokesproject.Joker;
 public final class JokeEndpoint {
 
     /**
-     * A simple endpoint method that takes a name and says Hi back
+     * A simple endpoint method that returns a joke
      */
     @ApiMethod(name = "getJoke")
     public JokeBean getAJoke() {
         final JokeBean response = new JokeBean();
-        response.setData(Joker.getJoke());
+        final Joker joker = new Joker();
+        response.setData(joker.getJoke());
         return response;
     }
 
