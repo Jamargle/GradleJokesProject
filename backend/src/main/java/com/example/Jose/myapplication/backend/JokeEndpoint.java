@@ -6,34 +6,32 @@
 
 package com.example.Jose.myapplication.backend;
 
+import com.example.Jose.myapplication.backend.domain.JokeBean;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
-
-import javax.inject.Named;
+import com.jmlb0003.jokes.gradlejokesproject.Joker;
 
 /**
  * An endpoint class we are exposing
  */
 @Api(
-        name = "myApi",
+        name = "jokeApi",
         version = "v1",
         namespace = @ApiNamespace(
                 ownerDomain = "backend.myapplication.Jose.example.com",
-                ownerName = "backend.myapplication.Jose.example.com",
-                packagePath = ""
+                ownerName = "backend.myapplication.Jose.example.com"
         )
 )
-public class MyEndpoint {
+public final class JokeEndpoint {
 
     /**
      * A simple endpoint method that takes a name and says Hi back
      */
-    @ApiMethod(name = "sayHi")
-    public MyBean sayHi(@Named("name") String name) {
-        MyBean response = new MyBean();
-        response.setData("Hi, " + name);
-
+    @ApiMethod(name = "getJoke")
+    public JokeBean getAJoke() {
+        final JokeBean response = new JokeBean();
+        response.setData(Joker.getJoke());
         return response;
     }
 
