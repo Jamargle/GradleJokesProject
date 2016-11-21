@@ -5,17 +5,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public final class MainActivityFragment extends Fragment
         implements JokeAsyncTask.JokeAsyncTaskListener {
 
+    @BindView(R.id.loading_view) ProgressBar loadingView;
     private Callback callback;
 
     @Override
@@ -34,18 +37,22 @@ public final class MainActivityFragment extends Fragment
 
     @OnClick(R.id.tell_joke_button)
     public void tellJoke() {
-        new JokeAsyncTask(getActivity(), this).execute();
+        loadingView.setVisibility(View.VISIBLE);
+        new JokeAsyncTask(this).execute();
     }
 
     @Override
     public void showAJoke(final String joke) {
+        loadingView.setVisibility(View.GONE);
         callback.goToJokeActivity(joke);
     }
 
     @Override
     public void thereIsNoJokes() {
         getActivity().runOnUiThread(new Runnable() {
-            @Override public void run() {
+            @Override
+            public void run() {
+                loadingView.setVisibility(View.GONE);
                 Toast.makeText(getActivity(), R.string.no_jokes, Toast.LENGTH_SHORT).show();
             }
         });
