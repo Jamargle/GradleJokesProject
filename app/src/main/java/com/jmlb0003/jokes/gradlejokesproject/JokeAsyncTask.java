@@ -1,7 +1,5 @@
 package com.jmlb0003.jokes.gradlejokesproject;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.AsyncTask;
 
 import com.example.jose.myapplication.backend.jokeApi.JokeApi;
@@ -12,27 +10,16 @@ import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 
 import java.io.IOException;
 
-public final class JokeAsyncTask
+final class JokeAsyncTask
         extends AsyncTask<Void, Void, String> {
 
     private final static String LOCAL_SERVER_ROOT = "http://10.0.2.2:8080/";
     private final static String API_ENDPOINT = "_ah/api/";
     private static JokeApi myApiService = null;
     private final JokeAsyncTaskListener asyncTaskListener;
-    private final ProgressDialog dialog;
 
-    public JokeAsyncTask(
-            final Context context,
-            final JokeAsyncTaskListener listener) {
-
+    JokeAsyncTask(final JokeAsyncTaskListener listener) {
         asyncTaskListener = listener;
-        dialog = new ProgressDialog(context);
-    }
-
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        dialog.show();
     }
 
     @Override
@@ -67,10 +54,9 @@ public final class JokeAsyncTask
 
     @Override
     protected void onPostExecute(final String joke) {
-        if (dialog.isShowing()) {
-            dialog.hide();
+        if (joke != null && !joke.isEmpty()) {
+            asyncTaskListener.showAJoke(joke);
         }
-        asyncTaskListener.showAJoke(joke);
     }
 
     interface JokeAsyncTaskListener {
