@@ -19,6 +19,8 @@ public final class MainActivityFragment extends Fragment
         implements JokeAsyncTask.JokeAsyncTaskListener {
 
     @BindView(R.id.loading_view) ProgressBar loadingView;
+    @BindView(R.id.adView) AdView adView;
+
     private Callback callback;
 
     @Override
@@ -28,8 +30,8 @@ public final class MainActivityFragment extends Fragment
             final Bundle savedInstanceState) {
 
         final View root = inflater.inflate(R.layout.fragment_main, container, false);
-        initAddView(root);
         ButterKnife.bind(this, root);
+        initAddView();
         callback = (Callback) getActivity();
         setRetainInstance(true);
         return root;
@@ -58,8 +60,7 @@ public final class MainActivityFragment extends Fragment
         });
     }
 
-    private void initAddView(final View root) {
-        final AdView adView = (AdView) root.findViewById(R.id.adView);
+    private void initAddView() {
         if (adView != null) {
             // Create an ad request. Check logcat output for the hashed device ID to
             // get test ads on a physical device. e.g.
