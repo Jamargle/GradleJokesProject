@@ -10,7 +10,7 @@ import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 
 import java.io.IOException;
 
-public final class JokeAsyncTask
+final class JokeAsyncTask
         extends AsyncTask<Void, Void, String> {
 
     private final static String LOCAL_SERVER_ROOT = "http://10.0.2.2:8080/";
@@ -18,7 +18,7 @@ public final class JokeAsyncTask
     private static JokeApi myApiService = null;
     private final JokeAsyncTaskListener asyncTaskListener;
 
-    public JokeAsyncTask(final JokeAsyncTaskListener listener) {
+    JokeAsyncTask(final JokeAsyncTaskListener listener) {
         asyncTaskListener = listener;
     }
 
