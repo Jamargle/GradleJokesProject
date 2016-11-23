@@ -1,17 +1,21 @@
-package com.jmlb0003.jokes.gradlejokesproject;
+package com.jmlb0003.jokes.gradlejokesproject.home.Interstitial;
 
 import android.support.v4.app.Fragment;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.jmlb0003.jokes.gradlejokesproject.R;
+import com.jmlb0003.jokes.gradlejokesproject.utils.FireBaseAnalyticsTracker;
 
-public abstract class InterstitialAdFragment extends Fragment {
+public abstract class InterstitialAdFragment extends Fragment
+        implements InterstitialAdFragmentPresenter.View {
 
     private InterstitialAd interstitialAd;
+    private InterstitialAdFragmentPresenter presenter;
 
     public InterstitialAdFragment() {
-
+        presenter = new InterstitialAdFragmentPresenterImp(this, new FireBaseAnalyticsTracker(getActivity()));
     }
 
     @Override
@@ -20,7 +24,8 @@ public abstract class InterstitialAdFragment extends Fragment {
         initInterstitialAd();
     }
 
-    protected void showInterstitialAd() {
+    @Override
+    public void showInterstitialAd() {
         if (interstitialAd.isLoaded()) {
             interstitialAd.show();
         }
@@ -35,6 +40,7 @@ public abstract class InterstitialAdFragment extends Fragment {
 
             @Override
             public void onAdClosed() {
+                presenter.onAdClosed();
                 requestNewInterstitial();
                 continueWithFlowAfterAd();
             }
