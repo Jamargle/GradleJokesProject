@@ -10,12 +10,13 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public final class MainActivityFragment extends Fragment
+public final class MainActivityFragment extends InterstitialAdFragment
         implements JokeAsyncTask.JokeAsyncTaskListener {
 
     @BindView(R.id.loading_view) ProgressBar loadingView;
@@ -37,10 +38,15 @@ public final class MainActivityFragment extends Fragment
         return root;
     }
 
-    @OnClick(R.id.tell_joke_button)
-    public void tellJoke() {
+    @Override
+    protected void continueWithFlowAfterAd() {
         loadingView.setVisibility(View.VISIBLE);
         new JokeAsyncTask(this).execute();
+    }
+
+    @OnClick(R.id.tell_joke_button)
+    public void tellJoke() {
+        showInterstitialAd();
     }
 
     @Override
