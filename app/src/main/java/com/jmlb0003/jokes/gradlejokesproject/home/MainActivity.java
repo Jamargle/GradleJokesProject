@@ -1,10 +1,11 @@
-package com.jmlb0003.jokes.gradlejokesproject;
+package com.jmlb0003.jokes.gradlejokesproject.home;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.jose.step2library.JokeActivity;
+import com.jmlb0003.jokes.gradlejokesproject.R;
 
 public final class MainActivity extends AppCompatActivity
         implements MainActivityFragment.Callback {
