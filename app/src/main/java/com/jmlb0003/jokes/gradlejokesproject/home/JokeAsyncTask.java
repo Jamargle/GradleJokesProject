@@ -1,4 +1,4 @@
-package com.jmlb0003.jokes.gradlejokesproject;
+package com.jmlb0003.jokes.gradlejokesproject.home;
 
 import android.os.AsyncTask;
 
