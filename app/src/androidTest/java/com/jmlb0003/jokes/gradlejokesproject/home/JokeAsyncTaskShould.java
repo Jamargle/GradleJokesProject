@@ -1,4 +1,4 @@
-package com.jmlb0003.jokes.gradlejokesproject;
+package com.jmlb0003.jokes.gradlejokesproject.home;
 
 import android.app.Instrumentation;
 import android.support.test.annotation.UiThreadTest;
