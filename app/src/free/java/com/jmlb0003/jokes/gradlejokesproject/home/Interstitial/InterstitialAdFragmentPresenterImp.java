@@ -16,19 +16,21 @@ class InterstitialAdFragmentPresenterImp implements InterstitialAdFragmentPresen
     }
 
     @Override
-    public void onAdOpened() {
+    public void onOpenAd() {
         fireBaseAnalyticsTracker.trackSelectContentEvent(
                 INTERSTITIAL_AD_OPENED_ID,
                 INTERSTITIAL_AD_NAME,
                 FireBaseAnalyticsTracker.INTERSTITIAL_AD);
+        view.showInterstitialAd();
     }
 
     @Override
-    public void onAdClosed() {
+    public void onCloseAd() {
         fireBaseAnalyticsTracker.trackSelectContentEvent(
                 INTERSTITIAL_AD_CLOSED_ID,
                 INTERSTITIAL_AD_NAME,
                 FireBaseAnalyticsTracker.INTERSTITIAL_AD);
+        view.closeInterstitialAd();
     }
 
 }

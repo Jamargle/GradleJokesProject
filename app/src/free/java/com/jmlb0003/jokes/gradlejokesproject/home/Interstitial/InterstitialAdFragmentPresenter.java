@@ -6,13 +6,15 @@ public interface InterstitialAdFragmentPresenter {
     String INTERSTITIAL_AD_CLOSED_ID = "interstitial_ad_closed";
     String INTERSTITIAL_AD_NAME = "main_fragment_interstitial";
 
-    void onAdOpened();
+    void onOpenAd();
 
-    void onAdClosed();
+    void onCloseAd();
 
     interface View {
 
         void showInterstitialAd();
+
+        void closeInterstitialAd();
 
     }
 

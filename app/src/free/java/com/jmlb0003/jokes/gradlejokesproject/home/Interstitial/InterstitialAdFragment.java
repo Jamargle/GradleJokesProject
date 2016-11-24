@@ -31,6 +31,16 @@ public abstract class InterstitialAdFragment extends Fragment
         }
     }
 
+    @Override
+    public void closeInterstitialAd() {
+        requestNewInterstitial();
+        continueWithFlowAfterAd();
+    }
+
+    protected void openAd() {
+        presenter.onOpenAd();
+    }
+
     protected abstract void continueWithFlowAfterAd();
 
     private void initInterstitialAd() {
@@ -40,13 +50,10 @@ public abstract class InterstitialAdFragment extends Fragment
 
             @Override
             public void onAdClosed() {
-                presenter.onAdClosed();
-                requestNewInterstitial();
-                continueWithFlowAfterAd();
+                presenter.onCloseAd();
             }
 
         });
-
         requestNewInterstitial();
     }
 
