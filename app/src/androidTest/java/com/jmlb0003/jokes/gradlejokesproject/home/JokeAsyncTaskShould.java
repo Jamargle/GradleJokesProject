@@ -1,11 +1,9 @@
-package com.jmlb0003.jokes.gradlejokesproject;
+package com.jmlb0003.jokes.gradlejokesproject.home;
 
 import android.app.Instrumentation;
 import android.support.test.annotation.UiThreadTest;
 import android.support.test.rule.UiThreadTestRule;
 import android.support.test.runner.AndroidJUnit4;
-
-import com.jmlb0003.jokes.gradlejokesproject.home.JokeAsyncTask;
 
 import org.junit.Before;
 import org.junit.Rule;
