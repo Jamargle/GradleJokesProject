@@ -1,10 +1,14 @@
 package com.jmlb0003.jokes.gradlejokesproject.home;
 
-import com.jmlb0003.jokes.gradlejokesproject.home.Interstitial.InterstitialAdFragmentPresenter;
+interface MainActivityFragmentPresenter {
 
-interface MainActivityFragmentPresenter extends InterstitialAdFragmentPresenter {
+    void onTellJoke();
 
-    interface View extends InterstitialAdFragmentPresenter.View {
+    interface View {
+
+        void openInterstitialAd();
+
+        void continueTheFlowAfterAd();
 
     }
 

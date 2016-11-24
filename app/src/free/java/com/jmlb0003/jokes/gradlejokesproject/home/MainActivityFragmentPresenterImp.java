@@ -1,6 +1,16 @@
 package com.jmlb0003.jokes.gradlejokesproject.home;
 
-public final class MainActivityFragmentPresenterImp implements MainActivityFragmentPresenter {
+final class MainActivityFragmentPresenterImp implements MainActivityFragmentPresenter {
 
+    private final MainActivityFragmentPresenter.View view;
+
+    MainActivityFragmentPresenterImp(MainActivityFragmentPresenter.View view) {
+        this.view = view;
+    }
+
+    @Override
+    public void onTellJoke() {
+        view.openInterstitialAd();
+    }
 
 }
